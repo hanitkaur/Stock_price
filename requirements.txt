@@ -1,0 +1,7 @@
+pandas_datareader
+yfinance
+numpy 
+pandas
+matplotlib
+seaborn
+PyPortfolioOpt
