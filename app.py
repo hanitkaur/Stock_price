@@ -71,12 +71,13 @@ if selected_stocks:
     for stock in selected_stocks:
         stock_data =web.get_data_yahoo(stock, start='2021-04-01', end=datetime.datetime(2024, 1, 28))
         plt.plot(stock_data.index, stock_data['Adj Close'], label=stock)
+    plt.plot(nifty_data.index, nifty_data['Adj Close'], label='Nifty', linestyle='--')
     plt.yscale('log')
     plt.xlabel('Date')
     plt.ylabel('Adjusted Close Price (Log Scale)')
-    plt.title('Comparison of Selected Stocks')
+    plt.title('Comparison of Selected Stocks with Nifty')
     plt.legend()
-    st.pyplot()
+    st.pyplot(plt)
 else:
     st.write('Please select at least one stock for comparison.')
 
