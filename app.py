@@ -63,7 +63,7 @@ if len(selected_tickers) >= 2:
 
 ############################################################################################################
 st.header("Stocks for comparison with Nifty")
-nifty_data = nifty.copy()
+nifty_data = web.get_data_yahoo('^NSEI', start='2021-04-01', end=datetime.datetime(2024, 1, 28))
 ticker_list = ['RELIANCE.NS', 'HDFCBANK.NS', 'INFY.NS', 'ICICIBANK.NS','HINDUNILVR.NS', 'ASIANPAINT.NS', 'ITC.NS', 'TATAMOTORS.NS']
 selected_stocks = st.multiselect('Select stocks for comparison with Nifty', ticker_list)
 if selected_stocks:
