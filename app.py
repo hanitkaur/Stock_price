@@ -98,7 +98,7 @@ else:
     st.write('Please select at least one stock for comparison.')
 ###################################################################################################################
 
-
+import sklearn
 import pypfopt
 from pypfopt.discrete_allocation import DiscreteAllocation, get_latest_prices
 from pypfopt import risk_models
