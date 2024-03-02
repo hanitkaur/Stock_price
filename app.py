@@ -6,8 +6,6 @@ import pandas_datareader.data as web
 import datetime
 import yfinance as yf
 yf.pdr_override()
-
-# %matplotlib inline
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pypfopt
@@ -17,7 +15,6 @@ from pypfopt import expected_returns
 from pypfopt import DiscreteAllocation, get_latest_prices
 from pypfopt import CLA
 from pypfopt.risk_models import CovarianceShrinkage
-!pip install sklearn
 st.header(" Data Analysis of Stock Prices")
 start_date = datetime.datetime(2019,2,28)
 end_date = datetime.datetime(2024,1,28)
