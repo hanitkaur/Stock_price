@@ -194,6 +194,3 @@ portfolio_annualized_return = np.sum(returns.mean() * weights_equal * trading_da
 print('Expected Annual Return: '+ str(np.round(portfolio_annualized_return, 3) * 100) + '%')
 print('Annual Volataility: '+ str(np.round(portfolio_std_dev, 4) * 100) + '%')
 print('Annual Variance: '+ str(np.round(portfolio_variance, 3) * 100) + '%')
-
-
-
