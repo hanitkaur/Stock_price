@@ -10,7 +10,7 @@ yf.pdr_override()
 # %matplotlib inline
 import matplotlib.pyplot as plt
 import seaborn as sns
-
+import pypfopt
 from pypfopt.efficient_frontier import EfficientFrontier
 from pypfopt import risk_models
 from pypfopt import expected_returns
@@ -98,8 +98,7 @@ else:
     st.write('Please select at least one stock for comparison.')
 ###################################################################################################################
 
-import sklearn
-import pypfopt
+
 from pypfopt.discrete_allocation import DiscreteAllocation, get_latest_prices
 from pypfopt import risk_models
 S = risk_models.CovarianceShrinkage(portfolio).ledoit_wolf()
