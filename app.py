@@ -62,8 +62,6 @@ if len(selected_tickers) >= 2:
 
 
 ############################################################################################################
-import pandas_datareader.data as web
-
 st.header("Stocks for comparison with Nifty")
 nifty_data = nifty.copy()
 ticker_list = ['RELIANCE.NS', 'HDFCBANK.NS', 'INFY.NS', 'ICICIBANK.NS','HINDUNILVR.NS', 'ASIANPAINT.NS', 'ITC.NS', 'TATAMOTORS.NS']
@@ -71,7 +69,7 @@ selected_stocks = st.multiselect('Select stocks for comparison with Nifty', tick
 if selected_stocks:
     plt.figure(figsize=(15, 10))
     for stock in selected_stocks:
-        stock_data = portfolio.copy()
+        stock_data =web.get_data_yahoo(stock, start='2021-04-01', end=datetime.datetime(2024, 1, 28))
         plt.plot(stock_data.index, stock_data['Adj Close'], label=stock)
     plt.yscale('log')
     plt.xlabel('Date')
@@ -88,7 +86,7 @@ selected_stocks = st.multiselect('Select stocks for comparison', ticker_list)
 if selected_stocks:
     fig, ax = plt.subplots(figsize=(15, 10))
     for stock in selected_stocks:
-        stock_data = portfolio.copy()
+        stock_data = web.get_data_yahoo(stock, start='2021-04-01', end=datetime.datetime(2024, 1, 28))
         ax.plot(stock_data.index, stock_data['Adj Close'], label=stock)
     ax.set_xlabel('Date')
     ax.set_ylabel('Adjusted Close Price')
@@ -98,4 +96,3 @@ if selected_stocks:
 else:
     st.write('Please select at least one stock for comparison.')
 
-st.close()
