@@ -101,6 +101,7 @@ else:
 
 from pypfopt.discrete_allocation import DiscreteAllocation, get_latest_prices
 from pypfopt import risk_models
+total_portfolio_value = st.slider('Select total portfolio value (INR)', min_value=1000, max_value=10000000, value=100000)
 S = risk_models.CovarianceShrinkage(portfolio).ledoit_wolf()
 
 from pypfopt import expected_returns
@@ -111,7 +112,7 @@ ef = EfficientFrontier(mu, S)
 weights = ef.max_sharpe()
 cleaned_weights = ef.clean_weights()
 
-total_portfolio_value = st.slider('Select total portfolio value (INR)', min_value=1000, max_value=10000000, value=100000)
+
 latest_prices = get_latest_prices(portfolio)
 
 # Calculate allocation based on selected portfolio value
