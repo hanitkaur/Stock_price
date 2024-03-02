@@ -57,7 +57,7 @@ def plot_heatmap(correlation):
     return plt
 selected_tickers = st.multiselect('Select two stocks for correlation analysis', ticker_list)
 
-if len(selected_tickers) >= 2:
+if len(selected_tickers) == 2:
     selected_returns = returns[selected_tickers]
     selected_correlation = selected_returns.corr()
     st.pyplot(plot_heatmap(selected_correlation))
