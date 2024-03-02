@@ -100,8 +100,7 @@ else:
 from pypfopt.discrete_allocation import DiscreteAllocation, get_latest_prices
 from pypfopt import risk_models
 total_portfolio_value = st.slider('Select total portfolio value (INR)', min_value=1000, max_value=10000000, value=100000)
-weights=
-{
+weights={
     'ASIANPAINT.NS': 0.1245195885572673,
     'HDFCBANK.NS': 0.1245911237130412,
     'HINDUNILVR.NS': 0.1233721807213527,
