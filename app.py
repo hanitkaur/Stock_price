@@ -100,16 +100,17 @@ else:
 from pypfopt.discrete_allocation import DiscreteAllocation, get_latest_prices
 from pypfopt import risk_models
 total_portfolio_value = st.slider('Select total portfolio value (INR)', min_value=1000, max_value=10000000, value=100000)
-S = risk_models.CovarianceShrinkage(portfolio).ledoit_wolf()
-
-from pypfopt import expected_returns
-mu = expected_returns.capm_return(portfolio)
-
-from pypfopt.efficient_frontier import EfficientFrontier
-ef = EfficientFrontier(mu, S)
-weights = ef.max_sharpe()
-cleaned_weights = ef.clean_weights()
-
+weights=
+{
+    'ASIANPAINT.NS': 0.1245195885572673,
+    'HDFCBANK.NS': 0.1245911237130412,
+    'HINDUNILVR.NS': 0.1233721807213527,
+    'ICICIBANK.NS': 0.1269438003699677,
+    'INFY.NS': 0.124526220049228,
+    'ITC.NS': 0.1232515746983956,
+    'RELIANCE.NS': 0.1257253864765056,
+    'TATAMOTORS.NS': 0.1270701254142419
+}
 
 latest_prices = get_latest_prices(portfolio)
 
