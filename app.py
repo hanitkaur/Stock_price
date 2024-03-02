@@ -138,10 +138,5 @@ ax_shares.axis('equal')
 ax_shares.set_title('Allocation of Shares')
 st.pyplot(fig_shares)
 
-# Plot pie chart for investment amount
-fig_investment, ax_investment = plt.subplots()
-ax_investment.pie(allo['Investment amount'], labels=allo.index, autopct='%1.1f%%', startangle=140)
-ax_investment.axis('equal')
-ax_investment.set_title('Investment Amount')
-st.pyplot(fig_investment)
+
 
