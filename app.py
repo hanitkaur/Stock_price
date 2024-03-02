@@ -29,7 +29,7 @@ def get_stock_price(ticker):
 ticker_list = ['RELIANCE.NS','HDFCBANK.NS','INFY.NS','ICICIBANK.NS','HINDUNILVR.NS','ASIANPAINT.NS','ITC.NS','TATAMOTORS.NS']
 portfolio = get_stock_price(ticker_list)
 nifty = get_stock_price(['^NSEI'])
-# Format
+
 close = portfolio.copy()
 close.reset_index(inplace=True)
 close.set_index('Date', inplace=True)
@@ -41,25 +41,10 @@ for ticker in ticker_list:
 
 returns = close.pct_change()
 mean_daily_returns = returns.mean()
-
-# Allow the user to select two tickers
-selected_tickers = st.multiselect('Select two stocks for correlation analysis', ticker_list)
-
-# If exactly two tickers are selected, proceed with correlation analysis
-if len(selected_tickers) == 2:
-    # Fetch the selected stocks' returns
-    selected_returns = returns[selected_tickers]
-    
-    # Calculate correlation between selected stocks
-    selected_correlation = selected_returns.corr()
-    
-    # Plot the heatmap
-    st.pyplot(plot_heatmap(selected_correlation))
-
 # Function to plot heatmap
 def plot_heatmap(correlation):
     plt.figure(figsize=(9, 9))
-    matrix = np.triu(correlation)  # mask to only show bottom half of heatmap
+    matrix = np.triu(correlation)
     sns.heatmap(correlation, annot=True, cmap='YlGnBu', vmax=0.5, linewidths=0.3, annot_kws={"size": 10}, mask=matrix)
     plt.title('Correlation of Returns')
     plt.xlabel('')
@@ -67,6 +52,14 @@ def plot_heatmap(correlation):
     plt.xticks(rotation=90)
     plt.yticks(rotation=0)
     return plt
+selected_tickers = st.multiselect('Select two stocks for correlation analysis', ticker_list)
+
+if len(selected_tickers) >= 2:
+    selected_returns = returns[selected_tickers]
+    selected_correlation = selected_returns.corr()
+    st.pyplot(plot_heatmap(selected_correlation))
+
+
 
 import pandas_datareader.data as web
 
