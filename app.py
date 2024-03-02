@@ -126,7 +126,7 @@ allocation, leftover = da.greedy_portfolio()
 # Create DataFrame for allocation
 allo = pd.DataFrame.from_dict(allocation, orient='index', columns=['Shares'])
 allo['Current Price'] = latest_prices
-allo['Investment amount'] = allo['Current Price'] * allo['Shares']
+
 
 # Display allocation DataFrame
 st.write(allo)
