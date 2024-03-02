@@ -100,36 +100,21 @@ else:
 
 
 import pypfopt
-from pypfopt import risk_models
-
-sample_cov = risk_models.sample_cov(portfolio)
-S = risk_models.CovarianceShrinkage(portfolio).ledoit_wolf()
-
-from pypfopt import expected_returns
-mu = expected_returns.capm_return(portfolio)
-
-
-from pypfopt.efficient_frontier import EfficientFrontier
-ef = EfficientFrontier(mu, S)
-weights = ef.max_sharpe()
-cleaned_weights = ef.clean_weights()
-
-# For risk free rate
-r = 0.07
-ef.portfolio_performance(verbose=True, risk_free_rate = r)
-
 from pypfopt.discrete_allocation import DiscreteAllocation, get_latest_prices
 
+total_portfolio_value = st.slider('Select total portfolio value (INR)', min_value=1000, max_value=10000000, value=100000)
 latest_prices = get_latest_prices(portfolio)
-da = DiscreteAllocation(weights, latest_prices, total_portfolio_value=100000)
+
+# Calculate allocation based on selected portfolio value
+da = DiscreteAllocation(weights, latest_prices, total_portfolio_value=total_portfolio_value)
 
 # Number of shares of each stock to purchase
 allocation, leftover = da.greedy_portfolio()
 
+# Create DataFrame for allocation
 allo = pd.DataFrame.from_dict(allocation, orient='index', columns=['Shares'])
 allo['Current Price'] = latest_prices
-allo['Investment amount'] = allo['Current Price']*allo['Shares']
-st.header("Investment Cycle")
+allo['Investment amount'] = allo['Current Price'] * allo['Shares']
 
 # Display allocation DataFrame
 st.write(allo)
