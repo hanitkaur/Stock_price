@@ -16,6 +16,8 @@ from pypfopt import DiscreteAllocation, get_latest_prices
 from pypfopt import CLA
 from pypfopt.risk_models import CovarianceShrinkage
 st.set_page_config(page_title=" Data Analysis of Stock Prices", page_icon="📈")
+
+st.markdown("Data Analysis of Stock Prices")
 st.write("------------------------------------")
 st.header(" Covariance Analysis of Stock Prices")
 start_date = datetime.datetime(2019,2,28)
