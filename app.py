@@ -16,8 +16,8 @@ from pypfopt import risk_models
 from pypfopt import expected_returns
 from pypfopt import DiscreteAllocation, get_latest_prices
 from pypfopt import CLA
-from sklearn import covariance
 from pypfopt.risk_models import CovarianceShrinkage
+!pip install sklearn
 st.header(" Data Analysis of Stock Prices")
 start_date = datetime.datetime(2019,2,28)
 end_date = datetime.datetime(2024,1,28)
