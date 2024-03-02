@@ -8,3 +8,4 @@ PyPortfolioOpt
 streamlit
 streamlit-option-menu
 scikit-learn
+sklearn
