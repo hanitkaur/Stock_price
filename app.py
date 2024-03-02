@@ -28,8 +28,7 @@ def get_stock_price(ticker):
     prices = prices["Adj Close"].dropna(how="all")
     return prices
 
-ticker_list = ['RELIANCE.NS','HDFCBANK.NS','INFY.NS','ICICIBANK.NS',
-	'HINDUNILVR.NS','ASIANPAINT.NS','ITC.NS','TATAMOTORS.NS']
+ticker_list = ['RELIANCE.NS','HDFCBANK.NS','INFY.NS','ICICIBANK.NS','HINDUNILVR.NS','ASIANPAINT.NS','ITC.NS','TATAMOTORS.NS']
 portfolio = get_stock_price(ticker_list)
 nifty = get_stock_price(['^NSEI'])
 portfolio
