@@ -41,6 +41,7 @@ for ticker in ticker_list:
 
 returns = close.pct_change()
 mean_daily_returns = returns.mean()
+############################################################################################################
 # Function to plot heatmap
 def plot_heatmap(correlation):
     plt.figure(figsize=(9, 9))
@@ -60,61 +61,41 @@ if len(selected_tickers) >= 2:
     st.pyplot(plot_heatmap(selected_correlation))
 
 
-
+############################################################################################################
 import pandas_datareader.data as web
 
 st.header("Stocks for comparison with Nifty")
-# Fetch Nifty data
-nifty_data = web.get_data_yahoo('^NSEI', start='2021-04-01', end=datetime.datetime.now())
-
-# Define a list of stock tickers
+nifty_data = web.get_data_yahoo('^NSEI', start='2021-04-01', end=datetime.datetime(2024,1,28))
 ticker_list = ['RELIANCE.NS', 'HDFCBANK.NS', 'INFY.NS', 'ICICIBANK.NS','HINDUNILVR.NS', 'ASIANPAINT.NS', 'ITC.NS', 'TATAMOTORS.NS']
-
-# Allow user to select multiple stocks
 selected_stocks = st.multiselect('Select stocks for comparison with Nifty', ticker_list)
-
-# Plot selected stocks and Nifty
 if selected_stocks:
     plt.figure(figsize=(15, 10))
     for stock in selected_stocks:
-        stock_data = web.get_data_yahoo(stock, start='2021-04-01', end=datetime.datetime.now())
+        stock_data = web.get_data_yahoo(stock, start='2021-04-01', end=datetime.datetime(2024, 1, 28))
         plt.plot(stock_data.index, stock_data['Adj Close'], label=stock)
-    plt.plot(nifty_data.index, nifty_data['Adj Close'], label='Nifty', linestyle='--')
     plt.yscale('log')
     plt.xlabel('Date')
     plt.ylabel('Adjusted Close Price (Log Scale)')
-    plt.title('Comparison of Selected Stocks with Nifty')
-    plt.legend()
-    st.pyplot()
-else:
-    st.write('Please select at least one stock for comparison.')
-
-#portfolio[portfolio.index >= "2021-04-01"]['ASIANPAINT.NS'].plot(figsize=(15,10),logy=True)
-#nifty[nifty.index >= "2021-04-01"].plot(figsize=(15,10),logy=True)
-
-#portfolio[portfolio.index >= "2021-04-01"].plot(figsize=(15,10))
-
-st.header("Stocks for comparison")
-
-import pandas_datareader.data as web
-
-# Allow user to select multiple stocks
-selected_stocks = st.multiselect('Select stocks for comparison', ticker_list)
-
-# Fetch data for selected stocks
-if selected_stocks:
-    plt.figure(figsize=(15, 10))
-    for stock in selected_stocks:
-        stock_data = web.get_data_yahoo(stock, start='2021-04-01', end=datetime.datetime.now())
-        plt.plot(stock_data.index, stock_data['Adj Close'], label=stock)
-    plt.xlabel('Date')
-    plt.ylabel('Adjusted Close Price')
     plt.title('Comparison of Selected Stocks')
     plt.legend()
     st.pyplot()
 else:
     st.write('Please select at least one stock for comparison.')
 
-
+#######################################################################################################################
+st.header("Stocks for comparison")
+selected_stocks = st.multiselect('Select stocks for comparison', ticker_list)
+if selected_stocks:
+    fig, ax = plt.subplots(figsize=(15, 10))
+    for stock in selected_stocks:
+        stock_data = web.get_data_yahoo(stock, start='2021-04-01', end=datetime.datetime(2024,1,28))
+        ax.plot(stock_data.index, stock_data['Adj Close'], label=stock)
+    ax.set_xlabel('Date')
+    ax.set_ylabel('Adjusted Close Price')
+    ax.set_title('Comparison of Selected Stocks')
+    ax.legend()
+    st.pyplot(fig)
+else:
+    st.write('Please select at least one stock for comparison.')
 
 st.close()
